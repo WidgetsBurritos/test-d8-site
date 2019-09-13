@@ -29,10 +29,20 @@ You'll need the following installed on your system:
     ```bash
     vendor/bin/drush si -y --db-url=sqlite://sites/example.com/files/.ht.sqlite
     ```
-Make sure you take note of the username and password as you may need it later.
-5. Import the config:
+5. Set admin password to "admin":
+    ```bash
+    vendor/bin/drush upwd admin admin
+    ```    
+6. Import the config:
     ```bash
     vendor/bin/drush cim -y
+    ```
+7. Create some more users and set roles
+    ```bash
+    vendor/bin/drush user:create bobby --mail="bobby@example.com" --password="bobby"
+    vendor/bin/drush user:create carol --mail="carol@example.com" --password="carol"
+    vendor/bin/drush user-add-role "super_secret" bobby
+    vendor/bin/drush user-add-role "yet_another_role" carol
     ```
 6. Start a local web server:
     ```bash
@@ -48,8 +58,8 @@ Make sure you take note of the username and password as you may need it later.
 
 1. _my_testing_module_:
     Most of what we will be working with is located in a custom module called
-    my_testing_module, located in the [web/modules/custom/my_testing_module](web/modules/custom/my_testing_module). Go to that module's README to find out more information
-    about it.
+    my_testing_module. Go to that module's [README](web/modules/custom/my_testing_module)
+    to find out more information about what it does.
 
 2. _simpletest_:
     This module is provided by Drupal core. This test will be used for kernel,
