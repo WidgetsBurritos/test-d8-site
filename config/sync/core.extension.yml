@@ -12,7 +12,6 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
-  devel: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
@@ -44,12 +43,12 @@ module:
   views_ui: 0
   menu_link_content: 1
   views: 10
-  standard: 1000
+  my_profile: 1000
 theme:
   stable: 0
   classy: 0
   bartik: 0
   seven: 0
-profile: standard
+profile: my_profile
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

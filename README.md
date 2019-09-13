@@ -25,27 +25,24 @@ You'll need the following installed on your system:
     composer install
     npm install
     ```
-4. Do a basic site install:
+4. Do a basic site install and set the UUID:
     ```bash
-    vendor/bin/drush si -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --account-pass=admin
+    vendor/bin/drush si my_profile -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --config-dir=../config/sync --account-pass=admin
     ```
-5. Import the config:
-    ```bash
-    vendor/bin/drush cim -y
-    ```
-6. Create some more users and set roles
+5. Create some more users and set roles
     ```bash
     vendor/bin/drush user:create bobby --mail="bobby@example.com" --password="bobby"
     vendor/bin/drush user:create carol --mail="carol@example.com" --password="carol"
+    vendor/bin/drush user-add-role "administrator" admin
     vendor/bin/drush user-add-role "super_secret" bobby
     vendor/bin/drush user-add-role "yet_another_role" carol
     ```
-7. Start a local web server:
+6. Start a local web server:
     ```bash
     cd web
     php -S localhost:8888 .ht.router.php
     ```
-8. Open the site in your browser:
+7. Open the site in your browser:
     ```bash
     open http://localhost:8888
     ```
