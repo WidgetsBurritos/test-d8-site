@@ -27,29 +27,25 @@ You'll need the following installed on your system:
     ```
 4. Do a basic site install:
     ```bash
-    vendor/bin/drush si -y --db-url=sqlite://sites/example.com/files/.ht.sqlite
+    vendor/bin/drush si -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --account-pass=admin
     ```
-5. Set admin password to "admin":
-    ```bash
-    vendor/bin/drush upwd admin admin
-    ```    
-6. Import the config:
+5. Import the config:
     ```bash
     vendor/bin/drush cim -y
     ```
-7. Create some more users and set roles
+6. Create some more users and set roles
     ```bash
     vendor/bin/drush user:create bobby --mail="bobby@example.com" --password="bobby"
     vendor/bin/drush user:create carol --mail="carol@example.com" --password="carol"
     vendor/bin/drush user-add-role "super_secret" bobby
     vendor/bin/drush user-add-role "yet_another_role" carol
     ```
-6. Start a local web server:
+7. Start a local web server:
     ```bash
     cd web
     php -S localhost:8888 .ht.router.php
     ```
-7. Open the site in your browser:
+8. Open the site in your browser:
     ```bash
     open http://localhost:8888
     ```
