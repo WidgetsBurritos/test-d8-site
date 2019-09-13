@@ -1,0 +1,7 @@
+my_testing_module.my_message:
+  path: 'my-message'
+  defaults:
+    _controller: '\Drupal\my_testing_module\Controller\MyMessageController::displayMessage'
+    _title_callback: '\Drupal\my_testing_module\Controller\MyMessageController::title'
+  requirements:
+    _permission: 'access content'

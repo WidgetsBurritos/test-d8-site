@@ -48,7 +48,9 @@ Make sure you take note of the username and password as you may need it later.
 
 1. _my_testing_module_:
     Most of what we will be working with is located in a custom module called
-    my_testing_module, located in the [web/modules/custom/my_testing_module](web/modules/custom/my_testing_module).
+    my_testing_module, located in the [web/modules/custom/my_testing_module](web/modules/custom/my_testing_module). Go to that module's README to find out more information
+    about it.
+
 2. _simpletest_:
     This module is provided by Drupal core. This test will be used for kernel,
     functional, and javascript tests. It also provides a UI in the admin panel
