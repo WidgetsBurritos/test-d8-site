@@ -1,0 +1,5 @@
+name: My Testing Module
+type: module
+description: 'Module built for practicing test writing and running.'
+package: Custom
+core: 8.x

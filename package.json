@@ -1,0 +1,19 @@
+{
+  "name": "test-d8-site",
+  "version": "1.0.0",
+  "description": "This is a test D8 site which can be used for practicing test writing and running. This is to be used in tandem with the _[Testing. Testing. 1... 2... 3... *tap* *tap* *tap* - Is this thing on?](https://2019.texascamp.org/sessions/testing-testing-1-2-3-tap-tap-tap--is-this-thing-on-training)_ training at TexasCamp 2019.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WidgetsBurritos/test-d8-site.git"
+  },
+  "author": "David Stinemetze",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/WidgetsBurritos/test-d8-site/issues"
+  },
+  "homepage": "https://github.com/WidgetsBurritos/test-d8-site#readme"
+}
