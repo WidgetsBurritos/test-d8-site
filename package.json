@@ -11,7 +11,7 @@
     "url": "git+https://github.com/WidgetsBurritos/test-d8-site.git"
   },
   "author": "David Stinemetze",
-  "license": "GPL-2.0-or-later",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/WidgetsBurritos/test-d8-site/issues"
   },
