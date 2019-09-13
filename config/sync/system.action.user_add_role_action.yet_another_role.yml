@@ -1,0 +1,14 @@
+uuid: 511fc874-aa2e-4870-9791-edaacc49f7ea
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.yet_another_role
+  module:
+    - user
+id: user_add_role_action.yet_another_role
+label: 'Add the Yet Another Role role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: yet_another_role

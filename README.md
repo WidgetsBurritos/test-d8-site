@@ -30,9 +30,9 @@ You'll need the following installed on your system:
     vendor/bin/drush si -y --db-url=sqlite://sites/example.com/files/.ht.sqlite
     ```
 Make sure you take note of the username and password as you may need it later.
-5. Install a few modules:
+5. Import the config:
     ```bash
-    vendor/bin/drush pm:enable -y my_testing_module simpletest
+    vendor/bin/drush cim -y
     ```
 6. Start a local web server:
     ```bash
