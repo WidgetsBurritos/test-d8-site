@@ -25,7 +25,7 @@ You'll need the following installed on your system:
     composer install
     npm install
     ```
-4. Do a basic site install and set the UUID:
+4. Do a basic site install based on the existing config:
     ```bash
     vendor/bin/drush si my_profile -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --config-dir=../config/sync --account-pass=admin
     ```
@@ -33,6 +33,7 @@ You'll need the following installed on your system:
     ```bash
     vendor/bin/drush user:create bobby --mail="bobby@example.com" --password="bobby"
     vendor/bin/drush user:create carol --mail="carol@example.com" --password="carol"
+    vendor/bin/drush user:create david --mail="david@example.com" --password="david"
     vendor/bin/drush user-add-role "administrator" admin
     vendor/bin/drush user-add-role "super_secret" bobby
     vendor/bin/drush user-add-role "yet_another_role" carol
