@@ -18,7 +18,7 @@ class MyMessageController extends ControllerBase implements ContainerInjectionIn
     if ($user->hasPermission('my super secret privilege')) {
       return $this->t("You aren't all that special.");
     }
-    else if ($user->hasPermission('yet another privilege')) {
+    elseif ($user->hasPermission('yet another privilege')) {
       return $this->t('You have yet another privilege.');
     }
     return $this->t('You might be logged in.');
@@ -40,4 +40,5 @@ class MyMessageController extends ControllerBase implements ContainerInjectionIn
     $user = \Drupal::currentUser();
     return $this->t('Hi @user.', ['@user' => $user->getDisplayName()]);
   }
+
 }

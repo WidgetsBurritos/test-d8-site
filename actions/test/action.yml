@@ -1,0 +1,6 @@
+name: 'test'
+description: 'Perform Drupal tests'
+author: 'WidgetsBurritos'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
