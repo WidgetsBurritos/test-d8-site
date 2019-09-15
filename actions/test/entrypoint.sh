@@ -6,16 +6,17 @@ npm install
 chown -Rf www-data:www-data ./web
 
 sh -c "echo '---Install site---'"
-vendor/bin/drush si my_profile -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --config-dir=../config/sync --account-pass=admin
+cd "${GITHUB_WORKSPACE}/web"
+../vendor/bin/drush site-install --verbose --yes --db-url=sqlite://tmp/site.sqlite
 
 sh -c "echo '---Setting up web server---'"
-rm -rf /var/www/html
-ln -s "${GITHUB_WORKSPACE}/web" /var/www/html
-/etc/init.d/apache2 restart
+php -S localhost:80 .ht.router.php  &
 
 sh -c "echo '---Running drupal tests---'"
-cd /var/www/html/
 php ./core/scripts/run-tests.sh \
   --php /usr/local/bin/php \
-  --url http://localhost:80/ \
+  --sqlite /tmp/test.sqlite \
+  --verbose \
+  --color \
+  --url http://localhost \
   my_testing_module
