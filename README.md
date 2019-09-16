@@ -74,6 +74,10 @@ You'll need the following installed on your system:
   php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' --class 'Drupal\Tests\my_testing_module\Functional\MyFunctionalTest'
   ```
 2. Nightwatch.js (Javascript Testing)
+  ```bash
+  cd web/core
+  yarn test:nightwatch --tag my_testing_module
+  ```
 3. Behat (Behavioral Testing w/ Cucumber)
   ```
   BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat

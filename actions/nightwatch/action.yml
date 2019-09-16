@@ -1,5 +1,5 @@
-name: 'behat'
-description: 'Perform Behat tests'
+name: 'nightwatch'
+description: 'Perform Nightwatch.js tests'
 author: 'WidgetsBurritos'
 runs:
   using: 'docker'

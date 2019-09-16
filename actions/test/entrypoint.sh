@@ -2,8 +2,6 @@
 
 sh -c "echo '---Installing dependencies---'"
 composer install
-npm install
-chown -Rf www-data:www-data ./web
 
 sh -c "echo '---Install site---'"
 cd "${GITHUB_WORKSPACE}/web"
