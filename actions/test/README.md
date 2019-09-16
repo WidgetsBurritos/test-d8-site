@@ -1,3 +1,3 @@
-# action-phpcs
+# action-test
 
-Executes phpunit tests.
+Executes drupal tests.

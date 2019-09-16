@@ -1,0 +1,6 @@
+name: 'test'
+description: 'Perform Behat tests'
+author: 'WidgetsBurritos'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

@@ -7,5 +7,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ADD . /github/workspace
 ENV GITHUB_WORKSPACE /github/workspace
 
-ADD actions/test/entrypoint.sh /entrypoint.sh
-CMD /entrypoint.sh && tail -f /dev/null
+ADD actions/phpcs/entrypoint.sh /entrypoint-phpcs.sh
+ADD actions/test/entrypoint.sh /entrypoint-test.sh
+ADD actions/behat/entrypoint.sh /entrypoint-behat.sh
+CMD tail -f /dev/null

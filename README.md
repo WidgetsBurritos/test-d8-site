@@ -60,3 +60,21 @@ You'll need the following installed on your system:
     functional, and javascript tests. It also provides a UI in the admin panel
     that can be used to run tests (although we will be focused on test running
     via the command line).
+
+## Test Runners
+
+1. PHPUnit/Simpletest (PHP Testing)
+  To run all tests for a specific group:
+  ```bash
+  php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' my_testing_module
+  ```
+
+  To run an individual test class you can do this:
+  ```bash
+  php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' --class 'Drupal\Tests\my_testing_module\Functional\MyFunctionalTest'
+  ```
+2. Nightwatch.js (Javascript Testing)
+3. Behat (Behavioral Testing w/ Cucumber)
+  ```
+  BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat
+  ```
