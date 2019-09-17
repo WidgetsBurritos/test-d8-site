@@ -23,7 +23,6 @@ You'll need the following installed on your system:
 3. Install dependencies:
     ```bash
     composer install
-    npm install
     ```
 4. Do a basic site install based on the existing config:
     ```bash
@@ -64,21 +63,34 @@ You'll need the following installed on your system:
 ## Test Runners
 
 1. PHPUnit/Simpletest (PHP Testing)
-  To run all tests for a specific group:
+
+  Run all tests:
   ```bash
   php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' my_testing_module
   ```
 
-  To run an individual test class you can do this:
+  Run specific tests:
   ```bash
   php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' --class 'Drupal\Tests\my_testing_module\Functional\MyFunctionalTest'
   ```
 2. Nightwatch.js (Javascript Testing)
+
+  Run all tests:
   ```bash
   cd web/core
-  yarn test:nightwatch --tag my_testing_module
+  export DRUPAL_TEST_BASE_URL=http://localhost:8888
+  yarn test:nightwatch ../modules/custom/my_testing_module
   ```
+
+  Run specific tests:
 3. Behat (Behavioral Testing w/ Cucumber)
+
+  Run all tests:
   ```
   BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat
+  ```
+
+  Run specific tests:
+  ```
+  BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat features/drupal/powered-by.feature
   ```
