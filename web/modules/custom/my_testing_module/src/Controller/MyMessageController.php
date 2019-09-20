@@ -39,7 +39,7 @@ class MyMessageController extends ControllerBase implements ContainerInjectionIn
   }
 
   /**
-   * Retrieves the message for the current user.
+   * Retrieves the message for the specified user.
    *
    * @param \Drupal\Core\Session\AccountInterface $user
    *   User account.
