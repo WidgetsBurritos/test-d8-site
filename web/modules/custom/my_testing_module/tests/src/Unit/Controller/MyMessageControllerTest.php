@@ -75,4 +75,76 @@ class MyMessageControllerTest extends UnitTestCase {
     $this->assertEquals($expected, $controller->title());
   }
 
+  /**
+   * Test standard user message only contains correct message.
+   *
+   * @covers \Drupal\my_testing_module\Controller\MyMessageController::getMessageForUser
+   */
+  public function testGetMessageForStandardUserShowsCorrectMessage() {
+    $controller = new MyMessageController($this->user, $this->config_factory, $this->logger);
+    $controller->setStringTranslation($this->getStringTranslationStub());
+    $this->user->expects($this->any())
+      ->method('hasPermission')
+      ->will($this->returnValue(FALSE));
+    $expected = $this->t('You are logged in.');
+    $this->assertEquals($expected, $controller->getMessageForUser($this->user));
+  }
+
+  /**
+   * Test super secret privilege returns correct messages.
+   *
+   * @cover MyMessageController::getMessageForUser().
+   */
+  public function testGetMessageForSuperSecretUserShowsCorrectMessages() {
+    $controller = new MyMessageController($this->user, $this->config_factory, $this->logger);
+    $controller->setStringTranslation($this->getStringTranslationStub());
+    $this->user->expects($this->any())
+      ->method('hasPermission')
+      ->will($this->returnCallback(
+        function ($permission) {
+          return $permission == 'my super secret privilege';
+        }
+      ));
+    $expected = $this->t('You are logged in.') . '<br>' .
+      $this->t('You are special.');
+    $this->assertEquals($expected, $controller->getMessageForUser($this->user));
+  }
+
+  /**
+   * Test yet another privilege returns correct messages.
+   *
+   * @cover MyMessageController::getMessageForUser().
+   */
+  public function testGetMessageForYetAnotherUserShowsCorrectMessages() {
+    $controller = new MyMessageController($this->user, $this->config_factory, $this->logger);
+    $controller->setStringTranslation($this->getStringTranslationStub());
+    $this->user->expects($this->any())
+      ->method('hasPermission')
+      ->will($this->returnCallback(
+        function ($permission) {
+          return $permission == 'yet another privilege';
+        }
+      ));
+    $expected = $this->t('You are logged in.') . '<br>' .
+      $this->t('You have yet another privilege.');
+    $this->assertEquals($expected, $controller->getMessageForUser($this->user));
+  }
+
+  /**
+   * Test all permissions return correct messages.
+   *
+   * @cover MyMessageController::getMessageForUser().
+   */
+  public function testGetMessageForAdminUserShowsCorrectMessages() {
+    $controller = new MyMessageController($this->user, $this->config_factory, $this->logger);
+    $controller->setStringTranslation($this->getStringTranslationStub());
+    $this->user->expects($this->any())
+      ->method('hasPermission')
+      ->will($this->returnValue(TRUE));
+    $expected = $this->t('You are logged in.') . '<br>' .
+      $this->t('You are special.') . '<br>' .
+      $this->t('You have yet another privilege.');
+    $this->assertEquals($expected, $controller->getMessageForUser($this->user));
+  }
+
 }

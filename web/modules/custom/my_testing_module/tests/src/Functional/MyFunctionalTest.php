@@ -48,4 +48,14 @@ class MyFunctionalTest extends BrowserTestBase {
     $assert->pageTextContains('Hi Regular User.');
   }
 
+  /**
+   * Functional test confirming the controller is loading.
+   */
+  public function testMessageControllerDoesntLoadForUnauthenticatedUsers() {
+    $assert = $this->assertSession();
+    $this->drupalGet('my-message');
+    $assert->pageTextContains('You are not authorized to access this page.');
+    $assert->statusCodeEquals(403);
+  }
+
 }
