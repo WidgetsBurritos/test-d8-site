@@ -24,6 +24,13 @@ class MyFunctionalTest extends BrowserTestBase {
   protected $authorizedUser;
 
   /**
+   * Logged in user.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $authorizedFormUser;
+
+  /**
    * {@inheritdoc}
    */
   public static $modules = [
@@ -36,6 +43,7 @@ class MyFunctionalTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
     $this->authorizedUser = $this->drupalCreateUser([], 'Regular User');
+    $this->authorizedFormUser = $this->drupalCreateUser(['edit my admin form'], 'Form User');
   }
 
   /**
@@ -56,6 +64,28 @@ class MyFunctionalTest extends BrowserTestBase {
     $this->drupalGet('admin/config/system/my_testing_module/settings');
     $assert->pageTextContains('You are not authorized to access this page.');
     $assert->statusCodeEquals(403);
+  }
+
+  /**
+   * Confirm settings form is not accessible for unauthorized users.
+   */
+  public function testSettingsFormIsNotAccessibleToUnauthorizedUsers() {
+    $assert = $this->assertSession();
+    $this->drupalLogin($this->authorizedUser);
+    $this->drupalGet('admin/config/system/my_testing_module/settings');
+    $assert->pageTextContains('You are not authorized to access this page.');
+    $assert->statusCodeEquals(403);
+  }
+
+  /**
+   * Confirm settings form is accessible for authorized users.
+   */
+  public function testSettingsFormIsAccessibleToAuthorizedUsers() {
+    $assert = $this->assertSession();
+    $this->drupalLogin($this->authorizedFormUser);
+    $this->drupalGet('admin/config/system/my_testing_module/settings');
+    $assert->pageTextNotContains('You are not authorized to access this page.');
+    $assert->statusCodeEquals(200);
   }
 
 }

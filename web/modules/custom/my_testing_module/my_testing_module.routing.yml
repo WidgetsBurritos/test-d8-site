@@ -12,6 +12,6 @@ my_testing_module.settings:
     _form: '\Drupal\my_testing_module\Form\MySettingsForm'
     _title: 'My Testing Module Settings'
   requirements:
-    _permission: 'access content'
+    _permission: 'edit my admin form'
   options:
     _admin_route: TRUE
