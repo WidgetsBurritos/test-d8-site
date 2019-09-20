@@ -17,6 +17,13 @@ class MyFunctionalTest extends BrowserTestBase {
   public $profile = 'testing';
 
   /**
+   * Logged in user.
+   *
+   * @var \Drupal\Core\Session\AccountInterface
+   */
+  protected $authorizedUser;
+
+  /**
    * {@inheritdoc}
    */
   public static $modules = [
@@ -24,12 +31,21 @@ class MyFunctionalTest extends BrowserTestBase {
   ];
 
   /**
-   * Functional test of importing web page archive entities with preset uuid.
+   * {@inheritdoc}
    */
-  public function testMessageControllerIsLoading() {
+  protected function setUp() {
+    parent::setUp();
+    $this->authorizedUser = $this->drupalCreateUser([], 'Regular User');
+  }
+
+  /**
+   * Functional test confirming the controller is loading.
+   */
+  public function testMessageControllerIsLoadingForAuthenticatedUsers() {
     $assert = $this->assertSession();
+    $this->drupalLogin($this->authorizedUser);
     $this->drupalGet('my-message');
-    $assert->pageTextContains('Hi Anonymous.');
+    $assert->pageTextContains('Hi Regular User.');
   }
 
 }
