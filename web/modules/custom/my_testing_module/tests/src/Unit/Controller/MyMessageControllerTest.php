@@ -2,7 +2,9 @@
 
 namespace Drupal\Tests\my_testing_module\Unit\Controller;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Tests\UnitTestCase;
+use Drupal\my_testing_module\Controller\MyMessageController;
 
 /**
  * @coversDefaultClass \Drupal\my_testing_module\Controller\MyMessageController
@@ -11,11 +13,38 @@ use Drupal\Tests\UnitTestCase;
  */
 class MyMessageControllerTest extends UnitTestCase {
 
+  use StringTranslationTrait;
+
   /**
-   * Confirm unit tests are actually running.
+   * The current user.
+   *
+   * @var \Drupal\user\Entity\UserInterface
    */
-  public function testUnitTestsAreRunning() {
-    $this->assertEquals('a', 'a');
+  protected $user;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setUp() {
+    parent::setUp();
+    $this->user = $this->getMockBuilder('\Drupal\Core\Session\AccountInterface')
+      ->getMock();
+    $this->user->expects($this->any())
+      ->method('getDisplayName')
+      ->will($this->returnValue('John Doe'));
+    $this->setStringTranslation($this->getStringTranslationStub());
+  }
+
+  /**
+   * Confirm controller title is showing the correct user.
+   *
+   * @covers \Drupal\my_testing_module\Controller\MyMessageController::title
+   */
+  public function testTitleShowsCurrentUser() {
+    $controller = new MyMessageController($this->user);
+    $controller->setStringTranslation($this->getStringTranslationStub());
+    $expected = $this->t('Hi @user.', ['@user' => 'John Doe']);
+    $this->assertEquals($expected, $controller->title());
   }
 
 }
