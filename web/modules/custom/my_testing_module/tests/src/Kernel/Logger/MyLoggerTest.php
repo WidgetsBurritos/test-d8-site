@@ -8,7 +8,7 @@ use Drupal\KernelTests\KernelTestBase;
 /**
  * Tests the functionality of the logging service.
  *
- * @group Rackspace
+ * @group my_testing_module
  */
 class MyLoggerTest extends KernelTestBase {
 
