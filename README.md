@@ -15,6 +15,8 @@ You'll need the following installed on your system:
 4. Composer
 5. Sqlite
 6. Node.js 8+
+7. yarn
+8. Google Chrome
 
 ## Getting started
 
@@ -46,6 +48,10 @@ You'll need the following installed on your system:
     ```bash
     open http://localhost:8888
     ```
+8. At this point you can run a quick test to see if you have everything setup correctly by running:
+    ```bash
+    composer run check:dependencies
+    ```
 
 ## Notable Modules:
 
@@ -62,35 +68,49 @@ You'll need the following installed on your system:
 
 ## Test Runners
 
-1. PHPUnit/Simpletest (PHP Testing)
+### PHPUnit/Simpletest (PHP Testing)
 
-  Run all tests:
-  ```bash
-  php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' my_testing_module
-  ```
+#### Run all tests:
+```bash
+php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' my_testing_module
+```
 
-  Run specific tests:
-  ```bash
-  php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' --class 'Drupal\Tests\my_testing_module\Functional\MyFunctionalTest'
-  ```
-2. Nightwatch.js (Javascript Testing)
+#### Run specific tests:
+```bash
+php ./web/core/scripts/run-tests.sh --color --verbose --url 'http://localhost:8888' --class 'Drupal\Tests\my_testing_module\Functional\MyFunctionalTest'
+```
 
-  Run all tests:
-  ```bash
-  cd web/core
-  export DRUPAL_TEST_BASE_URL=http://localhost:8888
-  yarn test:nightwatch ../modules/custom/my_testing_module
-  ```
+If you are only running unit/kernel tests, you can leave off `--url 'http://localhost:8888'`.
 
-  Run specific tests:
-3. Behat (Behavioral Testing w/ Cucumber)
+### Nightwatch.js (Javascript Testing)
 
-  Run all tests:
-  ```
-  BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat
-  ```
+The first time you attempt to run nightwatch.js you will need to install the proper dependencies:
+```bash
+cd web/core
+yarn install
+cp -f .env.example .env
+```
 
-  Run specific tests:
-  ```
-  BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat features/drupal/powered-by.feature
-  ```
+#### Run all tests (from inside the web/core directory):
+```bash
+export DRUPAL_TEST_BASE_URL=http://localhost:8888
+yarn test:nightwatch ../modules/custom/my_testing_module
+```
+
+#### Run specific tests (from inside the web/core directory):
+```bash
+export DRUPAL_TEST_BASE_URL=http://localhost:8888
+yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch/MyNightwatchTest.js
+```
+
+### Behat (Behavioral Testing w/ Cucumber)
+
+#### Run all tests:
+```bash
+BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat
+```
+
+#### Run specific tests:
+```bash
+BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat features/drupal/powered-by.feature
+```

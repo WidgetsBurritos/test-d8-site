@@ -50,6 +50,7 @@
         "files": ["load.environment.php"]
     },
     "scripts": {
+        "check:dependencies": "./scripts/check-dependencies.sh",
         "pre-install-cmd": [
             "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
