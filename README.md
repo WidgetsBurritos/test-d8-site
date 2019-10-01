@@ -94,7 +94,7 @@ cp -f .env.example .env
 #### Run all tests (from inside the web/core directory):
 ```bash
 export DRUPAL_TEST_BASE_URL=http://localhost:8888
-yarn test:nightwatch ../modules/custom/my_testing_module
+yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch
 ```
 
 #### Run specific tests (from inside the web/core directory):

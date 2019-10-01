@@ -17,4 +17,4 @@ yarn install
 
 sh -c "echo '---Running nightwatch.js tests---'"
 export DRUPAL_TEST_BASE_URL=http://localhost
-yarn test:nightwatch ../modules/custom/*
+yarn test:nightwatch ../modules/custom/*/tests/src/Nightwatch
