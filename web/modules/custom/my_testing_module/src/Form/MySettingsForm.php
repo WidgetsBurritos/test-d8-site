@@ -37,6 +37,11 @@ class MySettingsForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => $this->t('Log users?'),
       '#default_value' => $config->get('log_users') ?: FALSE,
+      '#attached' => [
+        'library' => [
+          'my_testing_module/my_message_logging',
+        ],
+      ],
     ];
 
     return parent::buildForm($form, $form_state);
