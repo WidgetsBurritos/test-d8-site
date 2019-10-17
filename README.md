@@ -27,7 +27,7 @@ You'll need the following installed on your system:
     composer install
     ```
 4. Determine your version of Google Chrome (e.g. 77.0.3865.90)
-5. Install the nightwatch dependencies (note: you need to set your chromer version)
+5. Install the nightwatch dependencies (note: you need to set your major chrome version)
 
     ```bash
     export CHROMEVERSION=77
