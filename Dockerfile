@@ -1,10 +1,31 @@
-FROM drupal:8-apache
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
-RUN apt-get install -y git zip unzip curl gnupg vim libnss3 nodejs yarn
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+FROM php:7.2-alpine
+
+RUN apk add --no-cache \
+      # Dev convenience
+      bash \
+
+      # Chrome packages
+      chromium \
+      chromium-chromedriver \
+      nss \
+      freetype \
+      freetype-dev \
+      harfbuzz \
+      ca-certificates \
+      ttf-freefont \
+
+      # Node/Yarn packages
+      nodejs \
+      yarn \
+
+      # Drupal dependencies
+      composer \
+      libpng \
+      libpng-dev \
+      git \
+      sqlite
+RUN docker-php-ext-install gd
+
 ADD . /github/workspace
 ENV GITHUB_WORKSPACE /github/workspace
 

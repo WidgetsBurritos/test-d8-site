@@ -26,11 +26,23 @@ You'll need the following installed on your system:
     ```bash
     composer install
     ```
-4. Do a basic site install based on the existing config:
+4. Determine your version of Google Chrome (e.g. 77.0.3865.90)
+5. Install the nightwatch dependencies (note: you need to set your chromer version)
+
+    ```bash
+    export CHROMEVERSION=77
+    cd web/core
+    yarn install
+    yarn remove chromedriver
+    yarn add chromedriver@${CHROMEVERSION}
+    cp -f .env.example .env
+    cd ../..
+    ```
+6. Do a basic site install based on the existing config:
     ```bash
     vendor/bin/drush si my_profile -y --db-url=sqlite://sites/example.com/files/.ht.sqlite --config-dir=../config/sync --account-pass=admin
     ```
-5. Create some more users and set roles
+7. Create some more users and set roles
     ```bash
     vendor/bin/drush user:create bobby --mail="bobby@example.com" --password="bobby"
     vendor/bin/drush user:create carol --mail="carol@example.com" --password="carol"
@@ -39,16 +51,16 @@ You'll need the following installed on your system:
     vendor/bin/drush user-add-role "super_secret" bobby
     vendor/bin/drush user-add-role "yet_another_role" carol
     ```
-6. Start a local web server:
+8. Start a local web server:
     ```bash
     cd web
     php -S localhost:8888 .ht.router.php
     ```
-7. Open the site in your browser:
+9. Open the site in your browser:
     ```bash
     open http://localhost:8888
     ```
-8. At this point you can run a quick test to see if you have everything setup correctly by running:
+10. At this point you can run a quick test to see if you have everything setup correctly by running:
     ```bash
     composer run check:dependencies
     ```
@@ -84,21 +96,18 @@ If you are only running unit/kernel tests, you can leave off `--url 'http://loca
 
 ### Nightwatch.js (Javascript Testing)
 
-The first time you attempt to run nightwatch.js you will need to install the proper dependencies:
+The first time you attempt to run nightwatch.js please ensure you follow the getting started instructions above and ensure that `composer run check:dependencies` runs as expected.
+
+#### Run all tests (from inside the `web/core` directory):
 ```bash
 cd web/core
-yarn install
-cp -f .env.example .env
-```
-
-#### Run all tests (from inside the web/core directory):
-```bash
 export DRUPAL_TEST_BASE_URL=http://localhost:8888
 yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch
 ```
 
-#### Run specific tests (from inside the web/core directory):
+#### Run specific tests (from inside the `web/core` directory):
 ```bash
+cd web/core
 export DRUPAL_TEST_BASE_URL=http://localhost:8888
 yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch/MyNightwatchTest.js
 ```

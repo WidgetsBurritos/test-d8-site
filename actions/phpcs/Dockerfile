@@ -1,7 +1,12 @@
-FROM drupal:8
-RUN apt-get update
-RUN apt-get install -y git zip unzip
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+FROM php:7.2-alpine
+
+RUN apk add --no-cache \
+      composer \
+      libpng \
+      libpng-dev \
+      git \
+      sqlite
+RUN docker-php-ext-install gd
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
