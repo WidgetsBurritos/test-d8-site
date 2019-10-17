@@ -41,7 +41,7 @@ yarn install > /dev/null
 if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
-yarn test:nightwatch ../modules/custom/my_testing_module > /dev/null
+yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch > /dev/null
 if [ $? -eq 0 ]
 then
   echo "✓ Success"
