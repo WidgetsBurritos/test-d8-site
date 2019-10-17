@@ -114,12 +114,6 @@ yarn test:nightwatch ../modules/custom/my_testing_module/tests/src/Nightwatch/My
 
 ### Behat (Behavioral Testing w/ Cucumber)
 
-#### Run all tests:
 ```bash
 BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat
-```
-
-#### Run specific tests:
-```bash
-BEHAT_PARAMS='{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://localhost:8888"}}}' ./vendor/bin/behat features/drupal/powered-by.feature
 ```
