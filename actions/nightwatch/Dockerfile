@@ -1,11 +1,24 @@
-FROM drupal:8-apache
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
-RUN apt-get install -y git zip unzip curl gnupg libnss3 nodejs yarn
+FROM php:7.2-alpine
 
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+RUN apk add --no-cache \
+      bash \
+      chromium \
+      chromium-chromedriver \
+      nss \
+      freetype \
+      freetype-dev \
+      harfbuzz \
+      ca-certificates \
+      ttf-freefont \
+      nodejs \
+      npm \
+      yarn \
+      composer \
+      libpng \
+      libpng-dev \
+      git \
+      sqlite
+RUN docker-php-ext-install gd
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
