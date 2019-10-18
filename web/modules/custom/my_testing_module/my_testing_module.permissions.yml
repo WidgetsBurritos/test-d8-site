@@ -2,3 +2,6 @@ my super secret privilege:
   title: 'My Super Secret Privilege'
 yet another privilege:
   title: 'Yet Another Privilege'
+edit my admin form:
+  title: 'Edit my admin form'
+  description: 'Allow users to edit my admin form'
