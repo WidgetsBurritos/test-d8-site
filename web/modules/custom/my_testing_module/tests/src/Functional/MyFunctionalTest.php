@@ -48,4 +48,14 @@ class MyFunctionalTest extends BrowserTestBase {
     $assert->pageTextContains('Hi Regular User.');
   }
 
+  /**
+   * Confirm settings form is not accessible to unauthenticated users.
+   */
+  public function testSettingsFormIsNotAccessibleToUnauthenticatedUsers() {
+    $assert = $this->assertSession();
+    $this->drupalGet('admin/config/system/my_testing_module/settings');
+    $assert->pageTextContains('You are not authorized to access this page.');
+    $assert->statusCodeEquals(403);
+  }
+
 }
